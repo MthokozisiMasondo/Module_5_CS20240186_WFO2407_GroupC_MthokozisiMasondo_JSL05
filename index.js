@@ -19,14 +19,41 @@ const songs = [
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
+    "Drax": "R&B",
+    "Rocket": "Rock",
+    "Groot": "Pop",
     // Add preferences for Drax, Rocket, and Groot
 };
 
 // Function to generate playlist based on preferred genre
 function generatePlaylist(guardians, songs) {
-    // Use the map() function to create playlists for each Guardian
-    // Your code here
+// Use the map() function to create playlists for each Guardian
+   const playlist = document.getElementById('playlists')
+
+        Object.keys(guardians).forEach(guardian => {
+        const favouriteGenre = guardians[guardian]
+        const songSelection = songs.filter(song => 
+            song.genre === favouriteGenre)
+
+            const div = document.createElement('div')
+            div.classList.add('guardian')
+        
+            const guardianName = document.createElement('h2')
+            guardianName.textContent = `${guardian}'s Playlist`
+            div.appendChild(guardianName)
+
+            songSelection.forEach(song => {
+                const songInfo = document.createElement('p')
+                songInfo.classList.add('song')
+                songInfo.textContent = `${song.title} by ${song.artist}`
+                div.appendChild(songInfo)
+            })
+
+            playlist.appendChild(div)
+    })  
+    
 }
+
 
 // Call generatePlaylist and display the playlists for each Guardian
 generatePlaylist(guardians, songs);
