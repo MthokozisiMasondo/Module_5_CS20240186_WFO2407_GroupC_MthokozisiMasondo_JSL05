@@ -29,27 +29,29 @@ const guardians = {
 function generatePlaylist(guardians, songs) {
 // Use the map() function to create playlists for each Guardian
    const playlist = document.getElementById('playlists')
+    playlist.classList.add('playlist')
 
         Object.keys(guardians).forEach(guardian => {
-        const favouriteGenre = guardians[guardian]
+        const favouriteGenre = guardians[guardian] 
         const songSelection = songs.filter(song => 
             song.genre === favouriteGenre)
 
-            const div = document.createElement('div')
-            div.classList.add('guardian')
+
+            const guardianDiv = document.createElement('div')
+            // guardianDiv.classList.add('song')
         
-            const guardianName = document.createElement('h2')
+            const guardianName = document.createElement('h1')
             guardianName.textContent = `${guardian}'s Playlist`
-            div.appendChild(guardianName)
+            guardianDiv.appendChild(guardianName)
 
             songSelection.forEach(song => {
-                const songInfo = document.createElement('p')
-                songInfo.classList.add('song')
+                const songInfo = document.createElement('ul')
+                songInfo.classList.add('song-title')
                 songInfo.textContent = `${song.title} by ${song.artist}`
-                div.appendChild(songInfo)
+                guardianDiv.appendChild(songInfo)
             })
 
-            playlist.appendChild(div)
+            playlist.appendChild(guardianDiv)
     })  
     
 }
